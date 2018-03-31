@@ -78,6 +78,35 @@ void makeRoom(ScreenBlock *sc)
     }
 }
 
+void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
+    uint8_t ypos)
+{
+    uint8_t i j;
+
+    //Top row
+    for(j=0; j<width; j++)
+    {
+        setScreenChar(M_HWALL, xpos+j, ypos);
+    }
+
+    //Midsection
+    for(i=1; i<height-1; i++)
+    {
+        setScreenChar(M_VWALL, xpos, ypos+i)
+        for(j=1;j<width-1;j++)
+        {
+            setScreenChar(M_FLOOR, xpos+j, ypos+i);
+        }
+        setScreenChar(M_VWALL, xpos+j, ypos+i);
+    }
+
+    //Bottom Row
+    for(j=0; j<width; j++)
+    {
+        setScreenChar(M_HWALL, xpos+j, ypos+i);
+    }
+}
+
 void drawPath(uint8_t x1, uint8_t y1, uint8_t x2,
     uint8_t y2)
 {
@@ -85,7 +114,7 @@ void drawPath(uint8_t x1, uint8_t y1, uint8_t x2,
     uint8_t start = getMin(x1,x2);
     uint8_t end = getMax(x1,x2);
 
-    //May need to shuffle around the x1,x2 thing;
+    //May need to shuffle around the y1,x2 thing;
     uint8_t i;
     for(i=start; i<=end; i++)
     {
