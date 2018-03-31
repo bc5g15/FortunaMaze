@@ -12,10 +12,19 @@ int collect_delta(int);
 int check_switches(int);
 int freeRam(int);
 int recurse(int);
+int show_pattern_one(int);
+int show_pattern_two(int);
+
+int game_loop(int);
+void input_handler();
+void drawMap();
 
 void get_tail(int, const char*);
 
 FIL File;                   /* FAT File */
+
+MOB player;
+
 
 int position = 0;
 
@@ -91,11 +100,15 @@ void get_tail(int rows, const char* filename)
 void main(void) {
     os_init();
 
-	os_add_task( recurse, 		  100, 1);
+	//os_add_task( recurse, 		  100, 1);
 	os_add_task( freeRam, 		 1000, 1);
-    os_add_task( blink,            30, 1);
+    //os_add_task( blink,            30, 1);
     os_add_task( collect_delta,   500, 1);
-    os_add_task( check_switches,  100, 1);
+	os_add_task( game_loop,		  100, 1);
+    //os_add_task( check_switches,  100, 1);
+	// os_add_task( show_pattern_one, 2000, 1);
+	// os_add_task( show_pattern_two, 3000, 1);
+
 	
 	
 
@@ -103,6 +116,59 @@ void main(void) {
     for(;;){}
 
 }
+
+int game_loop(int state)
+{
+	switch(state)
+	{
+		case 1 :
+			draw_tutorial_map();
+			state++;
+			break;
+		case 2 :
+			setup_tutorial_player(&player);
+			state++;
+			break;
+		case 3 :
+			input_handler();
+			break;
+
+	}
+
+	return state;
+}
+
+void input_handler()
+{
+	if(get_switch_press(_BV(SWS)))
+	{
+		movePlayer(south);
+	}
+	if(get_switch_press(_BV(SWN)))
+	{
+		movePlayer(north);
+	}
+	if(get_switch_press(_BV(SWW)))
+	{
+		movePlayer(west);
+	}
+	if(get_switch_press(_BV(SWE)))
+	{
+		movePlayer(east);
+	}
+}
+
+void drawMap()
+{
+	char mid[7*7];
+	ScreenBlock sc;
+	sc.width = 7;
+	sc.height = 7;
+	sc.blockval = mid;
+	makeRoom(&sc);
+	displayBlock(&sc, 3, 3);
+}
+
 
 int freeRam(int state)
 {
@@ -115,6 +181,45 @@ int freeRam(int state)
 	char strout[20];
 	snprintf(strout, sizeof(strout), "RAM Left: %i", myfree);
 	display_string_preserve_xy(strout, (uint16_t)0, (uint16_t)0);
+	return state;
+}
+
+int show_pattern_one(int state)
+{
+	char mine[15];
+	int i;
+	for(i=0;i<15;i++)
+	{
+		mine[i] = 'B';
+	}
+	ScreenBlock sc;
+	sc.width = 3;
+	sc.height = 5;
+	sc.blockval = mine;
+
+	ScreenBlock *addr = &sc;
+	setBlockRow("###", addr, 0);
+	setBlockRow("#.#", addr, 1);
+	setBlockRow("#.#", addr, 2);
+	setBlockRow("#.#", addr, 3);
+	setBlockRow("###", addr, 4);
+	displayBlock(&sc, 6, 5);
+	return state;
+}
+
+int show_pattern_two(int state)
+{
+	char mine[15];
+	int i;
+	for(i=0;i<15;i++)
+	{
+		mine[i] = 'A';
+	}
+	ScreenBlock sc;
+	sc.width = 5;
+	sc.height = 3;
+	sc.blockval = mine;
+	displayBlock(&sc, 5, 5);
 	return state;
 }
 
