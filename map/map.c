@@ -32,9 +32,10 @@ void move(MOB *m, enum direction dir)
 void shiftMob(MOB *m, uint8_t x, uint8_t y)
 {
     char next = getScreenChar(x,y);
-    if(next=='.')
+    if(next==M_FLOOR || next==M_PATH)
     {
         char c = m->standingOn;
+        m->standingOn = next;
         setScreenChar(c, m->x, m->y);
         drawWithColour(m->display, x, y,
             m->colour, BLACK);
@@ -50,7 +51,7 @@ void setPlayer(MOB *m)
     m->colour, BLACK);
 }
 
-void makeRoom(ScreenBlock *sc)
+void makeRoomOld(ScreenBlock *sc)
 {
     int i,j;
 
@@ -81,7 +82,7 @@ void makeRoom(ScreenBlock *sc)
 void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
     uint8_t ypos)
 {
-    uint8_t i j;
+    uint8_t i, j;
 
     //Top row
     for(j=0; j<width; j++)
@@ -92,7 +93,7 @@ void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
     //Midsection
     for(i=1; i<height-1; i++)
     {
-        setScreenChar(M_VWALL, xpos, ypos+i)
+        setScreenChar(M_VWALL, xpos, ypos+i);
         for(j=1;j<width-1;j++)
         {
             setScreenChar(M_FLOOR, xpos+j, ypos+i);

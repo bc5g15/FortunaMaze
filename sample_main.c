@@ -158,16 +158,16 @@ void input_handler()
 	}
 }
 
-void drawMap()
-{
-	char mid[7*7];
-	ScreenBlock sc;
-	sc.width = 7;
-	sc.height = 7;
-	sc.blockval = mid;
-	makeRoom(&sc);
-	displayBlock(&sc, 3, 3);
-}
+// void drawMap()
+// {
+// 	char mid[7*7];
+// 	ScreenBlock sc;
+// 	sc.width = 7;
+// 	sc.height = 7;
+// 	sc.blockval = mid;
+// 	makeRoom(&sc);
+// 	displayBlock(&sc, 3, 3);
+// }
 
 
 int freeRam(int state)

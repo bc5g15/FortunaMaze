@@ -2,14 +2,18 @@
 
 void draw_tutorial_map()
 {
-    char mid[7*7];
-	ScreenBlock sc;
-	sc.width = 7;
-	sc.height = 7;
-	sc.blockval = mid;
-	makeRoom(&sc);
-	displayBlock(&sc, 3, 3);
-    displayBlock(&sc, 12, 4);
+    // char mid[7*7];
+	// ScreenBlock sc;
+	// sc.width = 7;
+	// sc.height = 7;
+	// sc.blockval = mid;
+	// makeRoom(&sc);
+	// displayBlock(&sc, 3, 3);
+    // displayBlock(&sc, 12, 4);
+
+    makeRoom(7,7,3,3);
+    makeRoom(5, 8, 12, 4);
+    drawPath(9,5,12,5);
 
     // char mid2[6*8];
     // ScreenBlock sc2;

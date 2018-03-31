@@ -36,7 +36,7 @@ void movePlayer(enum direction dir);
 
 void setPlayer(MOB *m);
 
-void makeRoom(ScreenBlock *sc);
+void makeRoomOld(ScreenBlock *sc);
 
 void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
     uint8_t ypos);
