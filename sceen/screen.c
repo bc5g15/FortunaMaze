@@ -12,10 +12,38 @@ char getScreenChar(uint8_t x, uint8_t y)
     return screen[y][x];
 }
 
+void display_top(char *str)
+{
+    int i;
+    for(i=0;(str[i])&&(i<SCRN_MAX_WIDTH);i++)
+    {
+        display_char_xy(str[i], (i*FONTWIDTH), 0);
+    }
+    for(;i<SCRN_MAX_WIDTH;i++)
+    {
+        display_char_xy(' ', (i*FONTWIDTH),0);
+    }
+}
+
+void display_bottom(char *str)
+{
+    int i;
+    for(i=0;(str[i])&&(i<SCRN_MAX_WIDTH);i++)
+    {
+        display_char_xy(str[i], (i*FONTWIDTH), 
+            (display.height - FONTHEIGHT));
+    }
+    for(;i<SCRN_MAX_WIDTH;i++)
+    {
+        display_char_xy(' ', (i*FONTWIDTH),
+            (display.height - FONTHEIGHT));
+    }
+}
+
 void setScreenChar(char c, uint8_t x, uint8_t y)
 {
     screen[y][x] = c;
-    display_char_xy(c, (x*FONTWIDTH), (y*FONTHEIGHT));
+    display_char_xy(c, (x*FONTWIDTH), ((y+SCRN_SHIFT)*FONTHEIGHT));
 }
 
 void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)

@@ -101,7 +101,7 @@ void main(void) {
     os_init();
 
 	//os_add_task( recurse, 		  100, 1);
-	os_add_task( freeRam, 		 1000, 1);
+	//os_add_task( freeRam, 		 1000, 1);
     //os_add_task( blink,            30, 1);
     os_add_task( collect_delta,   500, 1);
 	os_add_task( game_loop,		  100, 1);
@@ -110,7 +110,7 @@ void main(void) {
 	// os_add_task( show_pattern_two, 3000, 1);
 
 	
-	
+	os_led_brightness(0);
 
     sei();
     for(;;){}
@@ -143,18 +143,26 @@ void input_handler()
 	if(get_switch_press(_BV(SWS)))
 	{
 		movePlayer(south);
+		display_top("NORTH");
+		display_bottom("NORTH");
 	}
 	if(get_switch_press(_BV(SWN)))
 	{
 		movePlayer(north);
+		display_top("SOUTH");
+		display_bottom("SOUTH");
 	}
 	if(get_switch_press(_BV(SWW)))
 	{
 		movePlayer(west);
+		display_top("WEST");
+		display_bottom("WEST");
 	}
 	if(get_switch_press(_BV(SWE)))
 	{
 		movePlayer(east);
+		display_top("EAST");
+		display_bottom("EAST");
 	}
 }
 
