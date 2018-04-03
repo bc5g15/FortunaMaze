@@ -1,5 +1,13 @@
 #include "setup.h"
 
+void setup_set_orientation(orientation o)
+{
+    set_orientation(o);
+    set_input_orientation(o);
+    clear_screen();
+    display_top("Hello");
+}
+
 void draw_tutorial_map()
 {
     // char mid[7*7];

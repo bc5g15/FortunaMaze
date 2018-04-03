@@ -22,10 +22,12 @@
 #include <stdio.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "setup.h"
 #include "rios.h"
-#include "ruota.h"
+//#include "ruota.h"
 #include "ff.h"
+// #include "lcd.h"
+
+#include "setup.h"
 
 
 

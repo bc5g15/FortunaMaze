@@ -18,6 +18,7 @@ int show_pattern_two(int);
 int game_loop(int);
 void input_handler();
 void drawMap();
+int pick_orientation();
 
 void get_tail(int, const char*);
 
@@ -119,17 +120,26 @@ void main(void) {
 
 int game_loop(int state)
 {
+	int myret;
 	switch(state)
 	{
 		case 1 :
-			draw_tutorial_map();
+			display_string("Are you left or right handed?\n");
+			display_string("Press the appropriate (L/R) button\n");
 			state++;
 			break;
 		case 2 :
+			myret=pick_orientation();
+			if(myret) {state++;}
+			break;
+		case 3 :
+		//Setting up
+			draw_tutorial_map();
 			setup_tutorial_player(&player);
 			state++;
 			break;
-		case 3 :
+		case 4 :
+		//Handling input
 			input_handler();
 			break;
 
@@ -138,31 +148,51 @@ int game_loop(int state)
 	return state;
 }
 
+int pick_orientation()
+{
+	//Left handed
+	if(get_switch_press(_BV(SWW)))
+	{
+		setup_set_orientation(North);
+		return 1;
+	}
+
+	//Right handed
+	if(get_switch_press(_BV(SWE)))
+	{
+		setup_set_orientation(North);
+		return 1;
+	}
+
+	return 0;
+}
+
 void input_handler()
 {
-	if(get_switch_press(_BV(SWS)))
+	if(button_pressed(Down))
 	{
 		movePlayer(south);
-		display_top("NORTH");
-		display_bottom("NORTH");
-	}
-	if(get_switch_press(_BV(SWN)))
-	{
-		movePlayer(north);
 		display_top("SOUTH");
 		display_bottom("SOUTH");
 	}
-	if(get_switch_press(_BV(SWW)))
+	if(button_pressed(Up))
+	{
+		movePlayer(north);
+		display_top("NORTH");
+		display_bottom("NORTH");
+	}
+	if(button_pressed(Left))
 	{
 		movePlayer(west);
 		display_top("WEST");
 		display_bottom("WEST");
 	}
-	if(get_switch_press(_BV(SWE)))
+	if(button_pressed(Right))
 	{
 		movePlayer(east);
 		display_top("EAST");
 		display_bottom("EAST");
+
 	}
 }
 

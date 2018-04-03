@@ -3,6 +3,8 @@
  *           View this license at http://creativecommons.org/about/licenses/
  */
  
+#ifndef LCD_H
+#define LCD_H
 #include <avr/io.h>
 #include <stdint.h>
 
@@ -53,3 +55,5 @@ void display_char_xy(char c, uint16_t x, uint16_t y);
 void set_display_colour(uint16_t foreground, uint16_t background);
 uint16_t display_get_foreground();
 uint16_t display_get_background();
+
+#endif // LCD_H
