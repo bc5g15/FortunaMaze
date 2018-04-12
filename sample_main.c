@@ -153,7 +153,7 @@ int pick_orientation()
 	//Left handed
 	if(get_switch_press(_BV(SWW)))
 	{
-		setup_set_orientation(North);
+		setup_set_orientation(South);
 		return 1;
 	}
 
