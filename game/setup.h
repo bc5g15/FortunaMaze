@@ -1,5 +1,5 @@
-#include "map.h"
-
+//#include "map.h"
+#include "player.h"
 #include "input.h"
 
 void setup_set_orientation(orientation o);

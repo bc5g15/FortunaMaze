@@ -171,41 +171,34 @@ void input_handler()
 {
 	if(button_pressed(Down))
 	{
-		movePlayer(south);
-		display_top("SOUTH");
-		display_bottom("SOUTH");
+		// movePlayer(south);
+		// display_top("SOUTH");
+		// display_bottom("SOUTH");
+		p_move(south);
 	}
 	if(button_pressed(Up))
 	{
-		movePlayer(north);
-		display_top("NORTH");
-		display_bottom("NORTH");
+		// movePlayer(north);
+		// display_top("NORTH");
+		// display_bottom("NORTH");
+		p_move(north);
 	}
 	if(button_pressed(Left))
 	{
-		movePlayer(west);
-		display_top("WEST");
-		display_bottom("WEST");
+		// movePlayer(west);
+		// display_top("WEST");
+		// display_bottom("WEST");
+		p_move(west);
 	}
 	if(button_pressed(Right))
 	{
-		movePlayer(east);
-		display_top("EAST");
-		display_bottom("EAST");
+		// movePlayer(east);
+		// display_top("EAST");
+		// display_bottom("EAST");
+		p_move(east);
 
 	}
 }
-
-// void drawMap()
-// {
-// 	char mid[7*7];
-// 	ScreenBlock sc;
-// 	sc.width = 7;
-// 	sc.height = 7;
-// 	sc.blockval = mid;
-// 	makeRoom(&sc);
-// 	displayBlock(&sc, 3, 3);
-// }
 
 
 int freeRam(int state)

@@ -23,6 +23,9 @@ void draw_tutorial_map()
     makeRoom(5, 8, 12, 4);
     drawPath(9,5,12,5);
 
+    addTreasure(8,8);
+    addTreasure(15, 7);
+
     // char mid2[6*8];
     // ScreenBlock sc2;
     // sc.width = 6;
@@ -34,11 +37,12 @@ void draw_tutorial_map()
 
 void setup_tutorial_player(MOB * player)
 {
-    player->x = 5;
-    player->y = 5;
-    player->standingOn = '.';
-    player->display = '@';
-    player->colour = RED;
+    // player->x = 5;
+    // player->y = 5;
+    // player->standingOn = '.';
+    // player->display = '@';
+    // player->colour = RED;
 
-    setPlayer(player);
+    // setPlayer(player);
+    start_player(5,5);
 }

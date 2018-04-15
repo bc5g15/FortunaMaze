@@ -1,3 +1,5 @@
+#ifndef MAP_DEF
+#define MAP_DEF
 #include "screen.h"
 
 #define M_PATH '#'
@@ -6,6 +8,8 @@
 #define M_FLOOR '.'
 #define M_PATH '#'
 
+#define TREASURE '$'
+
 // typedef struct{
 //     uint8_t x;
 //     uint8_t y;
@@ -13,8 +17,6 @@
 //     uint16_t foreground;
 //     char display;
     
-// } Tile;
-
 typedef struct {
     uint8_t x;
     uint8_t y;
@@ -23,6 +25,8 @@ typedef struct {
     uint16_t colour;
 } MOB;
 
+// } Tile;
+
 // MOB Player;
 // Player.display='@';
 // Player.standingOn='.';
@@ -30,11 +34,18 @@ typedef struct {
 
 enum direction {north, south, east, west};
 
+
 void move(MOB* m, enum direction dir);
 
 void movePlayer(enum direction dir);
 
 void setPlayer(MOB *m);
+
+/*
+In theory these shouldn't be necessary if I load from
+a file, but these will be useful while I build things
+from programs
+*/
 
 void makeRoomOld(ScreenBlock *sc);
 
@@ -43,3 +54,7 @@ void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
 
 void drawPath(uint8_t x1, uint8_t y1, uint8_t x2,
  uint8_t y2);
+
+ void addTreasure(uint8_t x, uint8_t y);
+
+ #endif

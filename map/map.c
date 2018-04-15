@@ -32,7 +32,7 @@ void move(MOB *m, enum direction dir)
 void shiftMob(MOB *m, uint8_t x, uint8_t y)
 {
     char next = getScreenChar(x,y);
-    if(next==M_FLOOR || next==M_PATH)
+    if(next==M_FLOOR || next==M_PATH || next==TREASURE)
     {
         char c = m->standingOn;
         m->standingOn = next;
@@ -144,4 +144,10 @@ uint8_t getMax(uint8_t fst, uint8_t snd)
 {
     uint8_t output = fst>snd ? fst : snd;
     return output;
+}
+
+void addTreasure(uint8_t x, uint8_t y)
+{
+    drawWithColour(TREASURE, x, y,
+     YELLOW, BLACK);
 }

@@ -1,3 +1,6 @@
+#ifndef SCREEN_DEF
+#define SCREEN_DEF
+
 #include "lcd.h"
 
 #define FONTWIDTH  6
@@ -44,3 +47,4 @@ void display_bottom(char *str);
 
 void setBlockRow(char* row, ScreenBlock* b, int pos);
 
+#endif
