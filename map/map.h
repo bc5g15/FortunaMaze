@@ -1,12 +1,13 @@
 #ifndef MAP_DEF
 #define MAP_DEF
 #include "screen.h"
+#include <stdlib.h>
 
 #define M_PATH '#'
 #define M_VWALL '|'
 #define M_HWALL '-'
 #define M_FLOOR '.'
-#define M_PATH '#'
+#define M_BLOCK ' '
 
 #define TREASURE '$'
 

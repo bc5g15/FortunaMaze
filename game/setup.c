@@ -19,7 +19,7 @@ void draw_tutorial_map()
 	// displayBlock(&sc, 3, 3);
     // displayBlock(&sc, 12, 4);
 
-    makeRoom(7,7,3,3);
+    makeRoom(9,7,0,0);
     makeRoom(5, 8, 12, 4);
     drawPath(9,5,12,5);
 
@@ -44,5 +44,10 @@ void setup_tutorial_player(MOB * player)
     // player->colour = RED;
 
     // setPlayer(player);
-    start_player(5,5);
+    start_player(1,1);
+}
+
+void setup_maze()
+{
+    makeMaze_binaryTree(3);
 }

@@ -25,6 +25,7 @@ void display_top(char *str)
     }
 }
 
+
 void display_bottom(char *str)
 {
     int i;

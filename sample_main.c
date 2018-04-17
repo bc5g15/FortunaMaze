@@ -134,7 +134,8 @@ int game_loop(int state)
 			break;
 		case 3 :
 		//Setting up
-			draw_tutorial_map();
+			//draw_tutorial_map();
+			setup_maze();
 			setup_tutorial_player(&player);
 			state++;
 			break;

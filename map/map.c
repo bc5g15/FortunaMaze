@@ -29,9 +29,14 @@ void move(MOB *m, enum direction dir)
     }
 }
 
+
+//Consider doing this checking at the player/mob level
 void shiftMob(MOB *m, uint8_t x, uint8_t y)
 {
     char next = getScreenChar(x,y);
+    char out[30];
+    snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
+    display_top(out);
     if(next==M_FLOOR || next==M_PATH || next==TREASURE)
     {
         char c = m->standingOn;

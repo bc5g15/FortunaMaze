@@ -1,5 +1,5 @@
 #ifndef SCREEN_DEF
-#define SCREEN_DEF
+#define SCREEN_DEF 1
 
 #include "lcd.h"
 
@@ -9,8 +9,8 @@
 #define SCRN_RESERVED_ROWS 2
 #define SCRN_SHIFT 1
 
-#define SCRN_MAX_WIDTH (int)(LCDHEIGHT/FONTWIDTH)
-#define SCRN_MAX_HEIGHT (int)(LCDWIDTH/FONTHEIGHT) - SCRN_RESERVED_ROWS
+#define SCRN_MAX_WIDTH (int)(LCDWIDTH/FONTWIDTH)
+#define SCRN_MAX_HEIGHT ((int)((LCDHEIGHT/FONTHEIGHT) - SCRN_RESERVED_ROWS))
 
 typedef struct{
     uint8_t width;
@@ -47,4 +47,5 @@ void display_bottom(char *str);
 
 void setBlockRow(char* row, ScreenBlock* b, int pos);
 
+void full_refresh();
 #endif
