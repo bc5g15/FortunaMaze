@@ -53,9 +53,9 @@ void makeMaze_binaryTree(int type)
 
     int i, j;
 
-    for(j=0; j<height-2; j+=DIV_Y)
+    for(j=1; j<height-DIV_Y; j+=DIV_Y)
     {
-        for(i=0; i<width-2; i+=DIV_X)
+        for(i=1; i<width-DIV_X; i+=DIV_X)
         {
             th.x = i;
             th.y = j;
@@ -106,11 +106,11 @@ int valid(TileHolder *th, mydir m)
     switch(m)
     {
         case UP:
-            return y;
+            return (y-INIT_Y);
         case DOWN:
             return (th->height-1) - (y+2);
         case LEFT:
-            return x;
+            return (x-INIT_X);
         case RIGHT:
             return (th->width-1) - (x+2);
     }
@@ -119,8 +119,8 @@ int valid(TileHolder *th, mydir m)
 
 void drawTile(TileHolder *th, mydir m)
 {
-    uint8_t x = (th->x)+1;
-    uint8_t y = (th->y)+1;
+    uint8_t x = (th->x);
+    uint8_t y = (th->y);
     
     drawFloor(x, y);
     switch(m)
