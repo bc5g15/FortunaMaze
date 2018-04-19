@@ -27,9 +27,9 @@ void move(MOB *m, enum direction dir)
 void shiftMob(MOB *m, uint8_t x, uint8_t y)
 {
     char next = getScreenChar(x,y);
-    char out[30];
-    snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
-    display_top(out);
+    // char out[30];
+    // snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
+    // display_top(out);
     if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT
      ||next==M_UP)
     {

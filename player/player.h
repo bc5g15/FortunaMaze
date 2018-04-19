@@ -28,3 +28,5 @@ int is_on_exit();
 void set_player_pos(uint8_t x, uint8_t y);
 
 void redraw();
+
+uint16_t get_gold();

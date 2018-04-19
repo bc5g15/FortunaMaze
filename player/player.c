@@ -71,3 +71,8 @@ void redraw()
     standing_on_exit=0;
     drawMOB(&p.m);
 }
+
+uint16_t get_gold()
+{
+    return p.gold;
+}

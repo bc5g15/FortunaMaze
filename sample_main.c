@@ -6,7 +6,7 @@
 #define MAXLEN  53
 #define MAXROWS 25
 
-#define TIMER_START 300
+#define TIMER_START 60
 
 #define RDEPTH 1000
 
@@ -26,6 +26,7 @@ void drawMap();
 int pick_orientation();
 int swap_or_start();
 void draw_start_screen();
+void draw_game_over();
 
 void get_tail(int, const char*);
 
@@ -34,7 +35,8 @@ FIL File;                   /* FAT File */
 MOB player;
 
 int timer_active = 0;
-int timer_value = 300;
+int timer_value = TIMER_START;
+int maze_depth = 1;
 
 
 int position = 0;
@@ -116,8 +118,9 @@ void main(void) {
 	//os_add_task( recurse, 		  100, 1);
 	//os_add_task( freeRam, 		 1000, 1);
     //os_add_task( blink,            30, 1);
-    os_add_task( collect_delta,   500, 1);
-	os_add_task( game_loop,		  100, 1);
+    //os_add_task( collect_delta,   500, 1);
+	os_add_task( manage_timer,    1000, 0);
+	os_add_task( game_loop,		   100, 1);
     //os_add_task( check_switches,  100, 1);
 	// os_add_task( show_pattern_one, 2000, 1);
 	// os_add_task( show_pattern_two, 3000, 1);
@@ -173,7 +176,7 @@ int game_loop(int state)
 				return 4;
 			} else
 			{
-				state = 3;
+				return 3;
 			}
 			break;
 		case 4 :
@@ -184,12 +187,22 @@ int game_loop(int state)
 			add_treasure();
 			add_exit();
 			setup_tutorial_player();
+			timer_active = 1;
 			state++;
 			break;
 		case 5 :
 		//Handling input
 			input_handler();
+			if(timer_value<=0)
+			{
+				timer_active = 0;
+				return 6;
+			}
 			break;
+		case 6 :
+		//Game Over screen
+			draw_game_over();
+			return 3;
 
 	}
 
@@ -202,11 +215,25 @@ int manage_timer(int state)
 	{
 		case 0:
 		 os_led_brightness(255);
+		 if(timer_active)
+		 {
+			 os_led_brightness(0);
+			 timer_value = TIMER_START;
+			 return 1;
+		 }
 		 break;
 		case 1:
 		 if(timer_active)
 		 {
-			 snprintf()
+			timer_value--;
+			char myout[40];
+			snprintf(myout, sizeof(myout), "Depth: %3d   Time: %03d", maze_depth, timer_value);
+			display_top(myout);
+		 }
+		 if(!timer_active)
+		 {
+			 timer_value = TIMER_START;
+			return 0;
 		 }
 	}
 
@@ -221,6 +248,43 @@ void draw_start_screen()
 	sc.height = 11;
 	sc.blockval = x;
 	displayBlock(&sc, 1, 10);
+}
+
+void draw_game_over()
+{
+
+	int i;
+	display_char_xy('*', 6, 32);
+	for(i=1; i<21; i++)
+	{
+		display_char('*');
+	}
+	display_string_xy("*   GAME   OVER   *", 6, 40);
+	display_char_xy('*', 6, 48);
+	for(i=1; i<21; i++)
+	{
+		display_char('*');
+	}
+	char myout[40];
+	snprintf(myout, sizeof(myout),
+		"* Reached Depth: %3d*", maze_depth);
+	display_string_xy(myout, 6, 56);
+	snprintf(myout, sizeof(myout),
+	 	"*Gold Collected: %3d*", get_gold());
+	display_string_xy(myout, 6, 64);
+	display_char_xy('*', 6, 72);
+	for(i=1; i<21; i++)
+	{
+		display_char('*');
+	}
+	display_string_xy("* Press Any Button  *", 6, 80);
+	display_string_xy("*    To Restart     *", 6, 88);
+	display_char_xy('*', 6, 96);
+	for(i=1; i<21; i++)
+	{
+		display_char('*');
+	}
+
 }
 
 int swap_or_start()
@@ -272,28 +336,44 @@ int pick_orientation()
 void input_handler()
 {
 	//button_pressed(D)
-	if(button_held(Down))
+	if(button_pressed(Down))
+	{
+		p_move(south);
+	}
+	else if(button_held(Down))
 	{
 		// movePlayer(south);
 		// display_top("SOUTH");
 		// display_bottom("SOUTH");
 		p_move(south);
 	}
-	if(button_held(Up))
+	if(button_pressed(Up))
+	{
+		p_move(north);
+	}
+	else if(button_held(Up))
 	{
 		// movePlayer(north);
 		// display_top("NORTH");
 		// display_bottom("NORTH");
 		p_move(north);
 	}
-	if(button_held(Left))
+	if(button_pressed(Left))
+	{
+		p_move(west);
+	}
+	else if(button_held(Left))
 	{
 		// movePlayer(west);
 		// display_top("WEST");
 		// display_bottom("WEST");
 		p_move(west);
 	}
-	if(button_held(Right))
+	if(button_pressed(Right))
+	{
+		p_move(east);
+	}
+	else if(button_held(Right))
 	{
 		// movePlayer(east);
 		// display_top("EAST");
@@ -304,6 +384,7 @@ void input_handler()
 
 	if(is_on_exit())
 	{
+		maze_depth++;
 		setup_maze();
 		add_treasure();
 		add_exit();
