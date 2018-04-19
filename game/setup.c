@@ -73,8 +73,8 @@ void add_treasure()
 
 void add_exit()
 {
-    int x = (rand() % (SCRN_MAX_HEIGHT/2)) * 2;
-    int y = (rand() % (SCRN_MAX_WIDTH/2)) * 2;
+    int x = (rand() % (SCRN_MAX_HEIGHT-2)) + 2;
+    int y = (rand() % (SCRN_MAX_WIDTH-2)) + 1;
 
     addExit(x, y);
 }

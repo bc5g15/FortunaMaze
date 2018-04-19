@@ -135,9 +135,10 @@ void main(void) {
 
 /*
 TODO
-Add good opening screen - Maybe done?
-Add game timer that enables the game
-Add Game Over screen
+Fix treasure generation locations.
+Add higher value treasure
+Refactor timer code maybe
+Add additional maze generation types
 */
 int game_loop(int state)
 {
@@ -153,13 +154,6 @@ int game_loop(int state)
 			break;
 		case 2 :
 			draw_maze(0);
-			// display_string_xy("READY?", 100, 100);
-			// display_string_xy("Get to the exit before the time runs out!", 1, 108);
-			// display_string_xy("Get as much treasure as you can!", 1, 116);
-			// display_string_xy("Press the button to swap handedness", 1, 200);
-			// display_string_xy("(Left/Right", 10, 210);
-			// display_string_xy("Press one of the arrow keys to start!", 2, 220);
-			// myret=pick_orientation();
 			draw_start_screen();
 			state++;
 			break;
@@ -247,7 +241,14 @@ void draw_start_screen()
 	sc.width = 37;
 	sc.height = 11;
 	sc.blockval = x;
+	int i;
+	display_char_xy(' ', 5, 80);
+	for(i=1; i<37; i++)
+		display_char(' ');
 	displayBlock(&sc, 1, 10);
+	display_char_xy(' ', 5, 160);
+	for(i=1; i<37; i++)
+		display_char(' ');
 }
 
 void draw_game_over()
@@ -259,7 +260,7 @@ void draw_game_over()
 	{
 		display_char('*');
 	}
-	display_string_xy("*   GAME   OVER   *", 6, 40);
+	display_string_xy("*   GAME   OVER    *", 6, 40);
 	display_char_xy('*', 6, 48);
 	for(i=1; i<21; i++)
 	{
@@ -385,10 +386,12 @@ void input_handler()
 	if(is_on_exit())
 	{
 		maze_depth++;
+		timer_value += 10 +(rand()% 15);
 		setup_maze();
 		add_treasure();
-		add_exit();
+
 		random_move_player();
+		add_exit();
 	}
 }
 
