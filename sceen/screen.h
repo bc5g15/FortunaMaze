@@ -15,7 +15,7 @@
 typedef struct{
     uint8_t width;
     uint8_t height;
-    char *blockval;
+    const char *blockval;
 } ScreenBlock;
 
 /*
@@ -45,7 +45,7 @@ void display_bottom(char *str);
 
 //Block commands
 
-void setBlockRow(char* row, ScreenBlock* b, int pos);
+// void setBlockRow(char* row, ScreenBlock* b, int pos);
 
 void full_refresh();
 #endif

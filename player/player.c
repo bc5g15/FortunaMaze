@@ -68,5 +68,6 @@ void set_player_pos(uint8_t x, uint8_t y)
 
 void redraw()
 {
+    standing_on_exit=0;
     drawMOB(&p.m);
 }

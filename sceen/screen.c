@@ -82,12 +82,12 @@ void drawWithColour(char c, uint8_t x, uint8_t y,
     set_display_colour(oldf, oldb);
 }
 
-void setBlockRow(char* row, ScreenBlock* b, int pos)
-{
-    int i;
-    int start = b->width * pos;
-    for(i=0; i<(b->width);i++)
-    {
-        b->blockval[start+i] = row[i];
-    }
-}
+// void setBlockRow(char* row, ScreenBlock* b, int pos)
+// {
+//     int i;
+//     int start = b->width * pos;
+//     for(i=0; i<(b->width);i++)
+//     {
+//         b->blockval[start+i] = row[i];
+//     }
+// }

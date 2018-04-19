@@ -56,33 +56,33 @@ void drawMOB(MOB *m)
     m->colour, BLACK);
 }
 
-void makeRoomOld(ScreenBlock *sc)
-{
-    int i,j;
+// void makeRoomOld(ScreenBlock *sc)
+// {
+//     int i,j;
 
-    //Top row
-    for(j=0;j<sc->width;j++)
-    {
-        sc->blockval[j] = M_HWALL;
-    }
+//     //Top row
+//     for(j=0;j<sc->width;j++)
+//     {
+//         sc->blockval[j] = M_HWALL;
+//     }
 
-    for(i=1; i<sc->height-1;i++)
-    {
-        int midstart = i*sc->width;
-        sc->blockval[midstart] = M_VWALL;
-        for(j=1;j<sc->width-1;j++)
-        {
-            sc->blockval[midstart + j] = M_FLOOR;
-        }
-        sc->blockval[midstart+j] = M_VWALL;
-    }
+//     for(i=1; i<sc->height-1;i++)
+//     {
+//         int midstart = i*sc->width;
+//         sc->blockval[midstart] = M_VWALL;
+//         for(j=1;j<sc->width-1;j++)
+//         {
+//             sc->blockval[midstart + j] = M_FLOOR;
+//         }
+//         sc->blockval[midstart+j] = M_VWALL;
+//     }
 
-    //Bottom row
-    for(j=0;j<sc->width;j++)
-    {
-        sc->blockval[j+(i*sc->width)] = M_HWALL;
-    }
-}
+//     //Bottom row
+//     for(j=0;j<sc->width;j++)
+//     {
+//         sc->blockval[j+(i*sc->width)] = M_HWALL;
+//     }
+// }
 
 void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
     uint8_t ypos)

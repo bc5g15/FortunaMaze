@@ -7,7 +7,7 @@ void setup_set_orientation(orientation o)
     set_orientation(o);
     set_input_orientation(o);
     clear_screen();
-    display_top("Hello");
+    display_top("Welcome to Fortuna Maze!");
 }
 
 void draw_tutorial_map()

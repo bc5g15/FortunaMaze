@@ -1,6 +1,8 @@
 /* COMP2215 Task 5---SKELETON */
 
 #include "os.h"
+#include <avr/pgmspace.h>
+#include "myStrings.h"
 #define MAXLEN  53
 #define MAXROWS 25
 
@@ -20,6 +22,7 @@ void input_handler();
 void drawMap();
 int pick_orientation();
 int swap_or_start();
+void draw_box();
 
 void get_tail(int, const char*);
 
@@ -140,13 +143,14 @@ int game_loop(int state)
 			break;
 		case 2 :
 			draw_maze(0);
-			display_string_xy("READY?", 100, 100);
-			display_string_xy("Get to the exit before the time runs out!", 1, 108);
-			display_string_xy("Get as much treasure as you can!", 1, 116);
-			display_string_xy("Press the button to swap handedness", 1, 200);
-			display_string_xy("(Left/Right", 10, 210);
-			display_string_xy("Press one of the arrow keys to start!", 2, 220);
+			// display_string_xy("READY?", 100, 100);
+			// display_string_xy("Get to the exit before the time runs out!", 1, 108);
+			// display_string_xy("Get as much treasure as you can!", 1, 116);
+			// display_string_xy("Press the button to swap handedness", 1, 200);
+			// display_string_xy("(Left/Right", 10, 210);
+			// display_string_xy("Press one of the arrow keys to start!", 2, 220);
 			// myret=pick_orientation();
+			draw_box();
 			state++;
 			break;
 		case 3 :
@@ -183,6 +187,16 @@ int game_loop(int state)
 	}
 
 	return state;
+}
+
+void draw_box()
+{
+	PGM_P x = MAIN_MENU;
+	ScreenBlock sc;
+	sc.width = 37;
+	sc.height = 11;
+	sc.blockval = x;
+	displayBlock(&sc, 1, 10);
 }
 
 int swap_or_start()
@@ -302,11 +316,11 @@ int show_pattern_one(int state)
 	sc.blockval = mine;
 
 	ScreenBlock *addr = &sc;
-	setBlockRow("###", addr, 0);
-	setBlockRow("#.#", addr, 1);
-	setBlockRow("#.#", addr, 2);
-	setBlockRow("#.#", addr, 3);
-	setBlockRow("###", addr, 4);
+	// setBlockRow("###", addr, 0);
+	// setBlockRow("#.#", addr, 1);
+	// setBlockRow("#.#", addr, 2);
+	// setBlockRow("#.#", addr, 3);
+	// setBlockRow("###", addr, 4);
 	displayBlock(&sc, 6, 5);
 	return state;
 }
