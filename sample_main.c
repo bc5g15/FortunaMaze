@@ -6,6 +6,8 @@
 #define MAXLEN  53
 #define MAXROWS 25
 
+#define TIMER_START 300
+
 #define RDEPTH 1000
 
 int blink(int);
@@ -16,19 +18,23 @@ int freeRam(int);
 int recurse(int);
 int show_pattern_one(int);
 int show_pattern_two(int);
+int manage_timer(int);
 
 int game_loop(int);
 void input_handler();
 void drawMap();
 int pick_orientation();
 int swap_or_start();
-void draw_box();
+void draw_start_screen();
 
 void get_tail(int, const char*);
 
 FIL File;                   /* FAT File */
 
 MOB player;
+
+int timer_active = 0;
+int timer_value = 300;
 
 
 int position = 0;
@@ -128,6 +134,7 @@ void main(void) {
 TODO
 Add good opening screen - Maybe done?
 Add game timer that enables the game
+Add Game Over screen
 */
 int game_loop(int state)
 {
@@ -150,7 +157,7 @@ int game_loop(int state)
 			// display_string_xy("(Left/Right", 10, 210);
 			// display_string_xy("Press one of the arrow keys to start!", 2, 220);
 			// myret=pick_orientation();
-			draw_box();
+			draw_start_screen();
 			state++;
 			break;
 		case 3 :
@@ -189,7 +196,24 @@ int game_loop(int state)
 	return state;
 }
 
-void draw_box()
+int manage_timer(int state)
+{
+	switch(state)
+	{
+		case 0:
+		 os_led_brightness(255);
+		 break;
+		case 1:
+		 if(timer_active)
+		 {
+			 snprintf()
+		 }
+	}
+
+	return state;
+}
+
+void draw_start_screen()
 {
 	PGM_P x = MAIN_MENU;
 	ScreenBlock sc;
@@ -302,146 +326,10 @@ int freeRam(int state)
 	return state;
 }
 
-int show_pattern_one(int state)
-{
-	char mine[15];
-	int i;
-	for(i=0;i<15;i++)
-	{
-		mine[i] = 'B';
-	}
-	ScreenBlock sc;
-	sc.width = 3;
-	sc.height = 5;
-	sc.blockval = mine;
-
-	ScreenBlock *addr = &sc;
-	// setBlockRow("###", addr, 0);
-	// setBlockRow("#.#", addr, 1);
-	// setBlockRow("#.#", addr, 2);
-	// setBlockRow("#.#", addr, 3);
-	// setBlockRow("###", addr, 4);
-	displayBlock(&sc, 6, 5);
-	return state;
-}
-
-int show_pattern_two(int state)
-{
-	char mine[15];
-	int i;
-	for(i=0;i<15;i++)
-	{
-		mine[i] = 'A';
-	}
-	ScreenBlock sc;
-	sc.width = 5;
-	sc.height = 3;
-	sc.blockval = mine;
-	displayBlock(&sc, 5, 5);
-	return state;
-}
 
 
 int collect_delta(int state) {
 	position += os_enc_delta();
-	return state;
-}
-
-int check_switches(int state) {
-
-	if(get_switch_long(_BV(SWS)))
-	{
-		display_string("[L] South\n");
-		printf("South Switch Long");
-	}
-
-	if(get_switch_long(_BV(SWN)))
-	{
-		display_string("[L] North\n");
-		printf("North Switch Long");
-
-	}
-
-	if (get_switch_long(_BV(SWE))) {
-		display_string("[L] East\n");
-		printf("East Switch Long");
-	}
-
-	if(get_switch_long(_BV(SWW)))
-	{
-		display_string("[L] West\n");
-		printf("Toggle recurse");
-		active = ~active;
-		if(active)
-		{
-			display_string("recursing\n");
-		}
-	}
-
-	if (get_switch_press(_BV(SWN))) {
-			display_string("North\n");
-	}
-
-	if (get_switch_press(_BV(SWE))) {
-			display_string("East\n");
-	}
-
-	if (get_switch_press(_BV(SWS))) {
-			display_string("South\n");
-			//get_tail(25, "lines.txt");
-	}
-
-	if (get_switch_press(_BV(SWW))) {
-			display_string("West\n");
-	}
-
-	if (get_switch_long(_BV(SWC))) {
-		f_mount(&FatFs, "", 0);
-		if (f_open(&File, "myfile.txt", FA_WRITE | FA_OPEN_ALWAYS) == FR_OK) {
-			f_lseek(&File, f_size(&File));
-			f_printf(&File, "Encoder position is: %d \r\n", position);
-			f_close(&File);
-			display_string("Wrote position\n");
-		} else {
-			display_string("Can't write file! \n");
-		}
-
-	}
-
-	if (get_switch_short(_BV(SWC))) {
-			display_string("[S] Centre\n");
-	}
-
-	if (get_switch_short(_BV(SWN))) {
-		display_string("[S] North\n");
-	}
-
-	if (get_switch_rpt(_BV(SWN))) {
-			display_string("[R] North\n");
-	}
-
-	if (get_switch_rpt(_BV(SWE))) {
-			display_string("[R] East\n");
-	}
-
-	if (get_switch_rpt(_BV(SWS))) {
-			display_string("[R] South\n");
-	}
-
-	if (get_switch_rpt(_BV(SWW))) {
-			display_string("[R] West\n");
-	}
-
-	if (get_switch_rpt(SWN)) {
-			display_string("[R] North\n");
-	}
-
-	
-
-	if (get_switch_long(_BV(OS_CD))) {
-		display_string("Detected SD card.\n");
-	}
-
 	return state;
 }
 

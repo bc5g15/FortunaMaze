@@ -54,7 +54,7 @@ a file, but these will be useful while I build things
 from programs
 */
 
-void makeRoomOld(ScreenBlock *sc);
+// void makeRoomOld(ScreenBlock *sc);
 
 void makeRoom(uint8_t width, uint8_t height, uint8_t xpos,
     uint8_t ypos);
