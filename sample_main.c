@@ -19,6 +19,7 @@ int game_loop(int);
 void input_handler();
 void drawMap();
 int pick_orientation();
+int swap_or_start();
 
 void get_tail(int, const char*);
 
@@ -31,6 +32,8 @@ int position = 0;
 
 int rposition = 0;
 int active = 0;
+
+int lhand = 0;
 
 //Implement a cyclic array
 //Can we make this its own method?
@@ -118,30 +121,61 @@ void main(void) {
 
 }
 
+/*
+TODO
+Add good opening screen - Maybe done?
+Add game timer that enables the game
+*/
 int game_loop(int state)
 {
-	int myret;
+	int k;
 	switch(state)
 	{
 		case 1 :
-			display_string("Are you left or right handed?\n");
-			display_string("Press the appropriate (L/R) button\n");
+			setup_set_orientation(North);
+			// display_string("Are you left or right handed?\n");
+			// display_string("Press the appropriate (L/R) button\n");
+			// draw_maze(0);
 			state++;
 			break;
 		case 2 :
-			myret=pick_orientation();
-			if(myret) {state++;}
+			draw_maze(0);
+			display_string_xy("READY?", 100, 100);
+			display_string_xy("Get to the exit before the time runs out!", 1, 108);
+			display_string_xy("Get as much treasure as you can!", 1, 116);
+			display_string_xy("Press the button to swap handedness", 1, 200);
+			display_string_xy("(Left/Right", 10, 210);
+			display_string_xy("Press one of the arrow keys to start!", 2, 220);
+			// myret=pick_orientation();
+			state++;
 			break;
 		case 3 :
+			k = swap_or_start();
+			if(k==1)
+			{
+				k=0;
+				return 2;
+			}
+			if(k==2)
+			{
+				k=0;
+				return 4;
+			} else
+			{
+				state = 3;
+			}
+			break;
+		case 4 :
 		//Setting up
 			//draw_tutorial_map();
+			srand(1);
 			setup_maze();
 			add_treasure();
 			add_exit();
 			setup_tutorial_player();
 			state++;
 			break;
-		case 4 :
+		case 5 :
 		//Handling input
 			input_handler();
 			break;
@@ -149,6 +183,33 @@ int game_loop(int state)
 	}
 
 	return state;
+}
+
+int swap_or_start()
+{
+	if(get_switch_press(_BV(SWC)))
+	{
+		if(!lhand)
+		{
+			setup_set_orientation(South);
+			lhand = 1;
+			return 1;
+		}
+		else
+		{
+			setup_set_orientation(North);
+			lhand = 0;
+			return 1;
+		}
+	}
+
+	if(button_pressed(Left) || button_pressed(Right) 
+	 || button_pressed(Up) || button_pressed(Down))
+	 {
+		 return 2;
+	 }
+
+	return 0;
 }
 
 int pick_orientation()

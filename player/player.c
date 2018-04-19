@@ -45,6 +45,7 @@ void check_tile_stand()
             break;
         case EXIT :
             standing_on_exit = 1;
+            p.m.standingOn = '>';
             break;
         default :
             break;
@@ -63,4 +64,9 @@ void set_player_pos(uint8_t x, uint8_t y)
     standing_on_exit = 0;
     drawMOB(&p.m);
     
+}
+
+void redraw()
+{
+    drawMOB(&p.m);
 }

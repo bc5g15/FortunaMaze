@@ -10,6 +10,8 @@ void draw_tutorial_map();
 
 void setup_tutorial_player();
 
+void draw_maze(int i);
+
 void setup_maze();
 
 void add_treasure();

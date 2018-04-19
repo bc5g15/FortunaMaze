@@ -76,7 +76,7 @@ void makeMaze_binaryTree(int type)
                 int choice = rand() %2;
                 drawTile(&th, dirop[choice]);
             }
-            _delay_ms(10);
+            _delay_ms(5);
         }
     }
 }

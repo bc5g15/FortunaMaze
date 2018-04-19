@@ -49,6 +49,11 @@ void setup_tutorial_player()
     start_player(1,1);
 }
 
+void draw_maze(int i)
+{
+    makeMaze_binaryTree((i)%4);
+}
+
 void setup_maze()
 {
     makeMaze_binaryTree((mazeNum++)%4);
@@ -76,8 +81,9 @@ void add_exit()
 
 void random_move_player()
 {
-    int x = ((rand() % (SCRN_MAX_HEIGHT/2)) * 2) + INIT_X;
-    int y = ((rand() % (SCRN_MAX_WIDTH/2)) * 2) + INIT_Y;
+    // int x = ((rand() % (SCRN_MAX_HEIGHT/2)) * 2) + INIT_X;
+    // int y = ((rand() % (SCRN_MAX_WIDTH/2)) * 2) + INIT_Y;
 
-    set_player_pos(x, y);
+    // set_player_pos(x, y);
+    redraw();
 }

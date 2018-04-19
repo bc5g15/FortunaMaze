@@ -8,9 +8,12 @@
 #define M_HWALL '-'
 #define M_FLOOR '.'
 #define M_BLOCK ' '
+#define M_UP '>'
 
 #define TREASURE '$'
 #define EXIT '<'
+#define EXIT_FORE RED
+#define EXIT_BACK CYAN
 
 // typedef struct{
 //     uint8_t x;

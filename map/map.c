@@ -30,7 +30,8 @@ void shiftMob(MOB *m, uint8_t x, uint8_t y)
     char out[30];
     snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
     display_top(out);
-    if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT)
+    if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT
+     ||next==M_UP)
     {
         char c = m->standingOn;
         m->standingOn = next;
@@ -158,5 +159,5 @@ void addTreasure(uint8_t x, uint8_t y)
 
 void addExit(uint8_t x, uint8_t y)
 {
-    drawWithColour(EXIT, x, y, CYAN, BLUE);
+    drawWithColour(EXIT, x, y, EXIT_FORE, EXIT_BACK);
 }
