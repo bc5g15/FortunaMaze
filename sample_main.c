@@ -139,6 +139,7 @@ Fix treasure generation locations.
 Add higher value treasure
 Refactor timer code maybe
 Add additional maze generation types
+Add pause button
 */
 int game_loop(int state)
 {
