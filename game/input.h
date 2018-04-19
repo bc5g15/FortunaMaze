@@ -9,4 +9,6 @@ typedef enum {Up, Right, Down, Left, Center} button;
 
 uint8_t button_pressed(button b);
 
+uint8_t button_held(button b);
+
 void set_input_orientation(orientation o);

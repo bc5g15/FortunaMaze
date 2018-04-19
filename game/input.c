@@ -29,3 +29,8 @@ uint8_t button_pressed(button b)
 {
     return get_switch_press(buttons[b]);
 }
+
+uint8_t button_held(button b)
+{
+    return get_switch_rpt(buttons[b]);
+}

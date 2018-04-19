@@ -172,28 +172,29 @@ int pick_orientation()
 
 void input_handler()
 {
-	if(button_pressed(Down))
+	//button_pressed(D)
+	if(button_held(Down))
 	{
 		// movePlayer(south);
 		// display_top("SOUTH");
 		// display_bottom("SOUTH");
 		p_move(south);
 	}
-	if(button_pressed(Up))
+	if(button_held(Up))
 	{
 		// movePlayer(north);
 		// display_top("NORTH");
 		// display_bottom("NORTH");
 		p_move(north);
 	}
-	if(button_pressed(Left))
+	if(button_held(Left))
 	{
 		// movePlayer(west);
 		// display_top("WEST");
 		// display_bottom("WEST");
 		p_move(west);
 	}
-	if(button_pressed(Right))
+	if(button_held(Right))
 	{
 		// movePlayer(east);
 		// display_top("EAST");
