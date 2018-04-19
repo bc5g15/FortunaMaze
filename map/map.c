@@ -1,15 +1,8 @@
 #include "map.h"
 
-MOB player;
-
 void shiftMob(MOB*, uint8_t, uint8_t);
 uint8_t getMin(uint8_t, uint8_t);
 uint8_t getMax(uint8_t, uint8_t);
-
-void movePlayer(enum direction dir)
-{
-    move(&player, dir);
-}
 
 void move(MOB *m, enum direction dir)
 {
@@ -37,7 +30,7 @@ void shiftMob(MOB *m, uint8_t x, uint8_t y)
     char out[30];
     snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
     display_top(out);
-    if(next==M_FLOOR || next==M_PATH || next==TREASURE)
+    if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT)
     {
         char c = m->standingOn;
         m->standingOn = next;
@@ -49,9 +42,15 @@ void shiftMob(MOB *m, uint8_t x, uint8_t y)
     }
 }
 
-void setPlayer(MOB *m)
+// void setPlayer(MOB *m)
+// {
+//     player = *m;
+//     drawWithColour(m->display, m->x, m->y,
+//     m->colour, BLACK);
+// }
+
+void drawMOB(MOB *m)
 {
-    player = *m;
     drawWithColour(m->display, m->x, m->y,
     m->colour, BLACK);
 }
@@ -155,4 +154,9 @@ void addTreasure(uint8_t x, uint8_t y)
 {
     drawWithColour(TREASURE, x, y,
      YELLOW, BLACK);
+}
+
+void addExit(uint8_t x, uint8_t y)
+{
+    drawWithColour(EXIT, x, y, CYAN, BLUE);
 }

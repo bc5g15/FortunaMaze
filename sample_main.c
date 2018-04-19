@@ -136,7 +136,9 @@ int game_loop(int state)
 		//Setting up
 			//draw_tutorial_map();
 			setup_maze();
-			setup_tutorial_player(&player);
+			add_treasure();
+			add_exit();
+			setup_tutorial_player();
 			state++;
 			break;
 		case 4 :
@@ -198,6 +200,14 @@ void input_handler()
 		// display_bottom("EAST");
 		p_move(east);
 
+	}
+
+	if(is_on_exit())
+	{
+		setup_maze();
+		add_treasure();
+		add_exit();
+		random_move_player();
 	}
 }
 

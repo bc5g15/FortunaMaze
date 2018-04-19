@@ -4,6 +4,7 @@
 void check_tile_stand();
 
 PLAYER p;
+int standing_on_exit = 0;
 
 void p_move(enum direction dir)
 {
@@ -23,6 +24,8 @@ void start_player(uint8_t x, uint8_t y)
     p.m.colour = GREEN;
     p.gold = 0;
     p.health = 30;
+    standing_on_exit = 0;
+    drawMOB(&p.m);
 }
 
 void display_status()
@@ -40,7 +43,24 @@ void check_tile_stand()
             p.gold++;
             p.m.standingOn = '.';
             break;
+        case EXIT :
+            standing_on_exit = 1;
+            break;
         default :
             break;
     }
+}
+
+int is_on_exit()
+{
+    return standing_on_exit;
+}
+
+void set_player_pos(uint8_t x, uint8_t y)
+{
+    p.m.x = x;
+    p.m.y = y;
+    standing_on_exit = 0;
+    drawMOB(&p.m);
+    
 }

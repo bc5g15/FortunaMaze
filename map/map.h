@@ -10,6 +10,7 @@
 #define M_BLOCK ' '
 
 #define TREASURE '$'
+#define EXIT '<'
 
 // typedef struct{
 //     uint8_t x;
@@ -38,9 +39,11 @@ enum direction {north, south, east, west};
 
 void move(MOB* m, enum direction dir);
 
-void movePlayer(enum direction dir);
+// void movePlayer(enum direction dir);
 
-void setPlayer(MOB *m);
+// void setPlayer(MOB *m);
+
+void drawMOB(MOB* m);
 
 /*
 In theory these shouldn't be necessary if I load from
@@ -57,5 +60,7 @@ void drawPath(uint8_t x1, uint8_t y1, uint8_t x2,
  uint8_t y2);
 
  void addTreasure(uint8_t x, uint8_t y);
+
+ void addExit(uint8_t x, uint8_t y);
 
  #endif

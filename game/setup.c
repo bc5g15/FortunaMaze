@@ -1,5 +1,7 @@
 #include "setup.h"
 
+int mazeNum = 0;
+
 void setup_set_orientation(orientation o)
 {
     set_orientation(o);
@@ -35,7 +37,7 @@ void draw_tutorial_map()
     //displayBlock(&sc2, 13, 4);
 }
 
-void setup_tutorial_player(MOB * player)
+void setup_tutorial_player()
 {
     // player->x = 5;
     // player->y = 5;
@@ -49,5 +51,33 @@ void setup_tutorial_player(MOB * player)
 
 void setup_maze()
 {
-    makeMaze_binaryTree(3);
+    makeMaze_binaryTree((mazeNum++)%4);
+}
+
+void add_treasure()
+{
+    int t;
+    for(t=0; t<5; t++)
+    {
+        int x = (rand() % (SCRN_MAX_HEIGHT/2)) * 2;
+        int y = (rand() % (SCRN_MAX_WIDTH/2)) * 2;
+
+        addTreasure(x, y);
+    }
+}
+
+void add_exit()
+{
+    int x = (rand() % (SCRN_MAX_HEIGHT/2)) * 2;
+    int y = (rand() % (SCRN_MAX_WIDTH/2)) * 2;
+
+    addExit(x, y);
+}
+
+void random_move_player()
+{
+    int x = ((rand() % (SCRN_MAX_HEIGHT/2)) * 2) + INIT_X;
+    int y = ((rand() % (SCRN_MAX_WIDTH/2)) * 2) + INIT_Y;
+
+    set_player_pos(x, y);
 }
