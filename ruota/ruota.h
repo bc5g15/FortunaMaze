@@ -25,7 +25,7 @@
 #define OS_CD   PB6
 #define SWC     PE7
 
-#define REPEAT_START    60      /* after 600ms */
+#define REPEAT_START    20      /* after 600ms */
 #define REPEAT_NEXT     10      /* every 100ms */
  
 void os_init_ruota(void);
