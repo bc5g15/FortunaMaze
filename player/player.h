@@ -8,8 +8,8 @@ struct
 
 typedef struct {
  MOB m;
- uint8_t health;
- uint8_t gold;
+ //uint8_t health;
+ uint32_t gold;
 } PLAYER;
 
 // void p_moveto(char c);

@@ -23,7 +23,7 @@ void start_player(uint8_t x, uint8_t y)
     p.m.display = '@';
     p.m.colour = GREEN;
     p.gold = 0;
-    p.health = 30;
+    // p.health = 30;
     standing_on_exit = 0;
     drawMOB(&p.m);
 }
@@ -31,7 +31,7 @@ void start_player(uint8_t x, uint8_t y)
 void display_status()
 {
     char strout[SCRN_MAX_WIDTH];
-    snprintf(strout, sizeof(strout), "HP: %03i  GOLD: %03i",p.health, p.gold);
+    snprintf(strout, sizeof(strout), "GOLD: %04i", p.gold);
     display_bottom(strout);
 }
 
