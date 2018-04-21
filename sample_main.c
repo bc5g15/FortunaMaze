@@ -28,6 +28,8 @@ int swap_or_start();
 void draw_start_screen();
 void draw_game_over();
 
+int check_pause();
+
 void get_tail(int, const char*);
 
 FIL File;                   /* FAT File */
@@ -36,6 +38,7 @@ MOB player;
 
 int timer_active = 0;
 int timer_value = TIMER_START;
+int timer_reset = 0;
 int maze_depth = 1;
 
 
@@ -133,12 +136,12 @@ void main(void) {
 
 /*
 TODO
-Fix treasure generation locations.
-Add higher value treasure
+Fix treasure generation locations. *
+Add higher value treasure * 
 Refactor timer code maybe
 Add additional maze generation types
 Add pause button
-Ensure exits can't go in the same place twice
+Ensure exits can't go in the same place twice *
 */
 int game_loop(int state)
 {
@@ -187,15 +190,32 @@ int game_loop(int state)
 		case 5 :
 		//Handling input
 			input_handler();
-			if(timer_value<=0)
+			k = check_pause();
+			if(k==1)
 			{
 				timer_active = 0;
 				return 6;
 			}
+			if(timer_value<=0)
+			{
+				timer_active = 0;
+				return 7;
+			}
 			break;
-		case 6 :
+		case 6 : 
+		//Paused
+			k=check_pause();
+			if(k==1)
+			{
+				timer_active = 1;
+				return 5;
+			}
+			display_top("PAUSED");
+			break;
+		case 7 :
 		//Game Over screen
 			draw_game_over();
+			timer_reset = 1;
 			return 3;
 
 	}
@@ -203,12 +223,21 @@ int game_loop(int state)
 	return state;
 }
 
+int check_pause()
+{
+	if(button_pressed(Center))
+	{
+		return 1;
+	}
+	return 0;
+}
+
 int manage_timer(int state)
 {
 	switch(state)
 	{
 		case 0:
-		 os_led_brightness(255);
+		 os_led_brightness(200);
 		 if(timer_active)
 		 {
 			 os_led_brightness(0);
@@ -224,10 +253,16 @@ int manage_timer(int state)
 			snprintf(myout, sizeof(myout), "Depth: %3d   Time: %03d", maze_depth, timer_value);
 			display_top(myout);
 		 }
-		 if(!timer_active)
+		//  if(!timer_active)
+		//  {
+		// 	 timer_value = TIMER_START;
+		// 	return 0;
+		//  }
+		 if(timer_reset)
 		 {
 			 timer_value = TIMER_START;
-			return 0;
+			 timer_reset = 0;
+			 return 0;
 		 }
 	}
 
