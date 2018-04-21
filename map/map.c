@@ -31,7 +31,7 @@ void shiftMob(MOB *m, uint8_t x, uint8_t y)
     // snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
     // display_top(out);
     if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT
-     ||next==M_UP)
+     ||next==M_UP || next==BIG_TREASURE)
     {
         char c = m->standingOn;
         m->standingOn = next;

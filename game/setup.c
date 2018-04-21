@@ -93,11 +93,11 @@ void add_exit()
     {
         if(x>0)
         {
-            x-1;
+            x-=1;
         }
         else
         {
-            x+1;
+            x+=1;
         }
     }
     exit_x = x;

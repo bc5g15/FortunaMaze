@@ -12,7 +12,7 @@
 
 #define BIG_TREASURE '*'
 #define BIG_TREASURE_FORE CYAN
-#define BIG_TREASURE_BACK YELLOW
+#define BIG_TREASURE_BACK BLUE
 #define BIG_TREASURE_VALUE 5
 #define TREASURE '$'
 #define EXIT '<'
