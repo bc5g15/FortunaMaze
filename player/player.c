@@ -43,6 +43,10 @@ void check_tile_stand()
             p.gold++;
             p.m.standingOn = '.';
             break;
+        case BIG_TREASURE :
+            p.gold+= BIG_TREASURE_VALUE;
+            p.m.standingOn = '.';
+            break;
         case EXIT :
             standing_on_exit = 1;
             p.m.standingOn = '>';

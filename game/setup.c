@@ -2,6 +2,9 @@
 
 int mazeNum = 0;
 
+int exit_x = 0;
+int exit_y = 0;
+
 void setup_set_orientation(orientation o)
 {
     set_orientation(o);
@@ -62,20 +65,43 @@ void setup_maze()
 void add_treasure()
 {
     int t;
-    for(t=0; t<5; t++)
+    int add = rand() %5;
+    for(t=0; t<MIN_TREASURE+add; t++)
     {
-        int x = (rand() % (SCRN_MAX_HEIGHT/2)) * 2;
-        int y = (rand() % (SCRN_MAX_WIDTH/2)) * 2;
+        int x = (rand() % (SCRN_MAX_HEIGHT - 2)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 2)) + 1;
 
         addTreasure(x, y);
+    }
+
+    if(rand()%2)
+    {
+        //Add big treasure
+        int x = (rand() % (SCRN_MAX_HEIGHT - 2)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 2)) + 1;
+
+        addBigTreasure(x, y);
     }
 }
 
 void add_exit()
 {
-    int x = (rand() % (SCRN_MAX_HEIGHT-2)) + 2;
+    int x = (rand() % (SCRN_MAX_HEIGHT-2)) + 1;
     int y = (rand() % (SCRN_MAX_WIDTH-2)) + 1;
 
+    if(exit_x==x && exit_y==y)
+    {
+        if(x>0)
+        {
+            x-1;
+        }
+        else
+        {
+            x+1;
+        }
+    }
+    exit_x = x;
+    exit_y = y;
     addExit(x, y);
 }
 

@@ -10,6 +10,10 @@
 #define M_BLOCK ' '
 #define M_UP '>'
 
+#define BIG_TREASURE '*'
+#define BIG_TREASURE_FORE CYAN
+#define BIG_TREASURE_BACK YELLOW
+#define BIG_TREASURE_VALUE 5
 #define TREASURE '$'
 #define EXIT '<'
 #define EXIT_FORE RED
@@ -63,6 +67,8 @@ void drawPath(uint8_t x1, uint8_t y1, uint8_t x2,
  uint8_t y2);
 
  void addTreasure(uint8_t x, uint8_t y);
+
+ void addBigTreasure(uint8_t x, uint8_t y);
 
  void addExit(uint8_t x, uint8_t y);
 

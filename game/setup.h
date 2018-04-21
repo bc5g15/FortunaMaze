@@ -4,6 +4,8 @@
 #include "input.h"
 #include <stdlib.h>
 
+#define MIN_TREASURE 5
+
 void setup_set_orientation(orientation o);
 
 void draw_tutorial_map();

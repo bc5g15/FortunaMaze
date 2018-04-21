@@ -46,8 +46,6 @@ int active = 0;
 
 int lhand = 0;
 
-//Implement a cyclic array
-//Can we make this its own method?
 
 int recurse(int state)
 {
@@ -140,6 +138,7 @@ Add higher value treasure
 Refactor timer code maybe
 Add additional maze generation types
 Add pause button
+Ensure exits can't go in the same place twice
 */
 int game_loop(int state)
 {

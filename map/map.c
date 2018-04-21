@@ -161,3 +161,9 @@ void addExit(uint8_t x, uint8_t y)
 {
     drawWithColour(EXIT, x, y, EXIT_FORE, EXIT_BACK);
 }
+
+void addBigTreasure(uint8_t x, uint8_t y)
+{
+    drawWithColour(BIG_TREASURE, x, y,
+        BIG_TREASURE_FORE, BIG_TREASURE_BACK);
+}
