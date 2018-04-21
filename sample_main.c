@@ -140,7 +140,7 @@ Fix treasure generation locations. *
 Add higher value treasure * 
 Refactor timer code maybe
 Add additional maze generation types
-Add pause button
+Add pause button * 
 Ensure exits can't go in the same place twice *
 */
 int game_loop(int state)
@@ -281,7 +281,7 @@ void draw_start_screen()
 	for(i=1; i<37; i++)
 		display_char(' ');
 	displayBlock(&sc, 1, 10);
-	display_char_xy(' ', 5, 160);
+	display_char_xy(' ', 5, 172);
 	for(i=1; i<37; i++)
 		display_char(' ');
 }
