@@ -16,6 +16,7 @@
 #define BIG_TREASURE_VALUE 5
 #define TREASURE '$'
 #define EXIT 'E'
+#define EXIT_SURROUND ','
 #define EXIT_FORE BLACK
 #define EXIT_BACK GREEN
 

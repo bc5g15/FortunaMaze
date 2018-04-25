@@ -1,6 +1,7 @@
 #include "map.h"
 
 void shiftMob(MOB*, uint8_t, uint8_t);
+void drawColourTile(char, uint8_t, uint8_t);
 uint8_t getMin(uint8_t, uint8_t);
 uint8_t getMax(uint8_t, uint8_t);
 
@@ -19,6 +20,7 @@ void move(MOB *m, enum direction dir)
             break;
         case west :
             shiftMob(m, m->x-1, m->y);
+            break;
     }
 }
 
@@ -31,11 +33,12 @@ void shiftMob(MOB *m, uint8_t x, uint8_t y)
     // snprintf(out, sizeof(out), "Moving To %d, %d", x, y);
     // display_top(out);
     if(next==M_FLOOR || next==M_PATH || next==TREASURE || next==EXIT
-     ||next==M_UP || next==BIG_TREASURE)
+     ||next==M_UP || next==BIG_TREASURE || next==EXIT_SURROUND)
     {
         char c = m->standingOn;
         m->standingOn = next;
-        setScreenChar(c, m->x, m->y);
+        // setScreenChar(c, m->x, m->y);
+        drawColourTile(c, m->x, m->y);
         drawWithColour(m->display, x, y,
             m->colour, BLACK);
         m->x = x;
@@ -136,8 +139,8 @@ void addExit(uint8_t x, uint8_t y)
     {
         for(my_x = -1; my_x<=1; my_x++)
         {
-            drawWithColour(M_FLOOR, x+my_x, y+my_y,
-            BLACK, EXIT_BACK);
+            drawWithColour(EXIT_SURROUND, x+my_x, y+my_y,
+            EXIT_FORE, EXIT_BACK);
         }
     }
     //Maybe draw an area here?
@@ -151,3 +154,16 @@ void addBigTreasure(uint8_t x, uint8_t y)
 }
 
 //Possible drawtile method to redraw with colour?
+void drawColourTile(char t, uint8_t x, uint8_t y)
+{
+    switch(t)
+    {
+        case EXIT_SURROUND :
+            drawWithColour(t, x, y,
+             EXIT_FORE, EXIT_BACK);
+             break;
+        default :
+            setScreenChar(t, x, y);
+            break;
+    }
+}
