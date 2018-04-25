@@ -30,9 +30,7 @@ void draw_game_over();
 
 int check_pause();
 
-void get_tail(int, const char*);
-
-FIL File;                   /* FAT File */
+// FIL File;                   /* FAT File */
 
 MOB player;
 
@@ -67,51 +65,6 @@ int recurse(int state)
 	}
 	return state;
 }
-
-void get_tail(int rows, const char* filename)
-{
-	
-	int j = 0;
-	char myring[rows][MAXLEN];
-	f_mount(&FatFs, "", 0);
-		if(f_open(&File, filename, FA_READ | FA_OPEN_EXISTING) == FR_OK)
-		{
-			//Read the last 25 lines of the file?
-			//Is it possible to work backwards?
-			//Gets will read line by line.
-
-			//Blank out the original array, otherwise loads
-			//of garbage data
-			for (j=0; j<rows; j++)
-			{
-				myring[j][0] = '\0';
-			}
-			j=0;
-			while(!f_eof(&File))
-			{
-				f_gets(myring[j++], MAXLEN, &File);
-				j%=rows;
-			}
-			f_close(&File);
-
-			display_string("Read File");
-			int i;
-			for(i=0;i<rows;i++)
-			{
-				display_string(myring[j++]);
-				j%=rows;
-			}
-			display_string("End of File\n");
-
-		}
-		else
-		{
-			display_string("Can't open file!\n");
-		}
-}
-
-
-
 
 void main(void) {
     os_init();
@@ -187,6 +140,7 @@ int game_loop(int state)
 			add_exit();
 			setup_tutorial_player();
 			timer_active = 1;
+			maze_depth = 1;
 			state++;
 			break;
 		case 5 :

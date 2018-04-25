@@ -21,8 +21,8 @@ typedef struct{
 /*
 By default
 Unless maybe I should use a vertical view?
-Max width = 53
-Max Height = 
+Max width = 40
+Max Height = 40
 */
 
 char getScreenChar(uint8_t x, uint8_t y);
