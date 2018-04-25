@@ -142,6 +142,8 @@ Refactor timer code maybe
 Add additional maze generation types
 Add pause button * 
 Ensure exits can't go in the same place twice *
+Add delay on exit screen
+Make exit more visible
 */
 int game_loop(int state)
 {
@@ -215,6 +217,8 @@ int game_loop(int state)
 		case 7 :
 		//Game Over screen
 			draw_game_over();
+			//Delay, to avoid skipping past
+			_delay_ms(200);
 			timer_reset = 1;
 			return 3;
 

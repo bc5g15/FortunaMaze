@@ -15,9 +15,9 @@
 #define BIG_TREASURE_BACK BLUE
 #define BIG_TREASURE_VALUE 5
 #define TREASURE '$'
-#define EXIT '<'
-#define EXIT_FORE RED
-#define EXIT_BACK CYAN
+#define EXIT 'E'
+#define EXIT_FORE BLACK
+#define EXIT_BACK GREEN
 
 // typedef struct{
 //     uint8_t x;

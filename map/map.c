@@ -130,7 +130,17 @@ void addTreasure(uint8_t x, uint8_t y)
 }
 
 void addExit(uint8_t x, uint8_t y)
-{
+{ 
+    int my_x, my_y;
+    for(my_y = -1; my_y<=1; my_y++)
+    {
+        for(my_x = -1; my_x<=1; my_x++)
+        {
+            drawWithColour(M_FLOOR, x+my_x, y+my_y,
+            BLACK, EXIT_BACK);
+        }
+    }
+    //Maybe draw an area here?
     drawWithColour(EXIT, x, y, EXIT_FORE, EXIT_BACK);
 }
 
@@ -139,3 +149,5 @@ void addBigTreasure(uint8_t x, uint8_t y)
     drawWithColour(BIG_TREASURE, x, y,
         BIG_TREASURE_FORE, BIG_TREASURE_BACK);
 }
+
+//Possible drawtile method to redraw with colour?
