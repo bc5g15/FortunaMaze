@@ -24,7 +24,7 @@
 #include <avr/interrupt.h>
 #include "rios.h"
 //#include "ruota.h"
-#include "ff.h"
+// #include "ff.h"
 // #include "lcd.h"
 
 #include "setup.h"
@@ -36,7 +36,7 @@
 #define LED_TOGGLE  PINB  |=  _BV(PINB7)
 
 
-FATFS FatFs;
+// FATFS FatFs;
 
 void os_init(void);
 
