@@ -54,6 +54,7 @@ void carve_passages_from(uint8_t x, uint8_t y)
            draw_tile(x, y, custom[i]);
            carve_passages_from(newx, newy);
        }
+       //_delay_ms(20);
    } 
 }
 
@@ -116,15 +117,12 @@ void draw_tile(uint8_t x, uint8_t y, mydir m)
             break;
         case DOWN:
             drawFloor(x, y+1);
-            if(y<INIT_Y)
             break;
         case RIGHT:
             drawFloor(x+1, y);
-            if(x<SCRN_MAX_WIDTH-INIT_X)
             break;
         case LEFT:
             drawFloor(x-1, y);
-            if(x>INIT_X)
             break;
         default :
             break;
