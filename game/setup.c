@@ -54,12 +54,22 @@ void setup_tutorial_player()
 
 void draw_maze(int i)
 {
-    makeMaze_binaryTree((i)%4);
+    // makeMaze_binaryTree((i)%4);
+    makeMaze_rBackTrack();
+    mazeNum = 0;
 }
 
 void setup_maze()
 {
-    makeMaze_binaryTree((mazeNum++)%4);
+    if(mazeNum %5 != 0)
+    {
+        makeMaze_binaryTree((mazeNum++)%4);
+    }
+    else
+    {
+        makeMaze_rBackTrack();
+        mazeNum++;
+    }
 }
 
 void add_treasure()

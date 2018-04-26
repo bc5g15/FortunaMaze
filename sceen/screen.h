@@ -31,7 +31,7 @@ char getScreenChar(uint8_t x, uint8_t y);
 Relies on a custom method in the lcd
 display library
 */
-void setScreenChar (char c, uint8_t x, uint8_t y);
+void setScreenChar(char c, uint8_t x, uint8_t y);
 
 void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 

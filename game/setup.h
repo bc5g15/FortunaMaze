@@ -1,6 +1,7 @@
 //#include "map.h"
 #include "player.h"
 #include "bintree.h"
+#include "rbacktrack.h"
 #include "input.h"
 #include <stdlib.h>
 
