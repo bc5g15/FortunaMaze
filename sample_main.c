@@ -92,11 +92,11 @@ TODO
 Fix treasure generation locations. *
 Add higher value treasure * 
 Refactor timer code maybe
-Add additional maze generation types
+Add additional maze generation types *
 Add pause button * 
 Ensure exits can't go in the same place twice *
-Add delay on exit screen
-Make exit more visible
+Add delay on exit screen *
+Make exit more visible *
 */
 int game_loop(int state)
 {
@@ -122,11 +122,19 @@ int game_loop(int state)
 				k=0;
 				return 2;
 			}
-			if(k==2)
+			else if(k==2)
 			{
 				k=0;
+				set_difficulty(EASY);
 				return 4;
-			} else
+			}
+			else if(k==3)
+			{
+				k=0;
+				set_difficulty(HARD);
+				return 4;
+			} 
+			else
 			{
 				return 3;
 			}
@@ -229,19 +237,27 @@ int manage_timer(int state)
 
 void draw_start_screen()
 {
-	PGM_P x = MAIN_MENU;
+	PGM_P x1 = START_1;
+	PGM_P x2 = START_2;
+	PGM_P x3 = START_3;
 	ScreenBlock sc;
-	sc.width = 37;
-	sc.height = 11;
-	sc.blockval = x;
+	sc.width = START_WIDTH;
+	sc.height = START_1_HEIGHT;
+	sc.blockval = x1;
 	int i;
 	display_char_xy(' ', 5, 80);
 	for(i=1; i<37; i++)
 		display_char(' ');
 	displayBlock(&sc, 1, 10);
-	display_char_xy(' ', 5, 172);
-	for(i=1; i<37; i++)
-		display_char(' ');
+	sc.blockval = x2;
+	sc.height = START_2_HEIGHT;
+	displayBlock(&sc, 1, 13);
+	sc.blockval = x3;
+	sc.height = START_3_HEIGHT;
+	displayBlock(&sc, 1, 18);
+	// display_char_xy(' ', 5, 172);
+	// for(i=1; i<37; i++)
+	// 	display_char(' ');
 }
 
 void draw_game_over()
@@ -299,11 +315,14 @@ int swap_or_start()
 		}
 	}
 
-	if(button_pressed(Left) || button_pressed(Right) 
-	 || button_pressed(Up) || button_pressed(Down))
+	if(button_pressed(Left))
 	 {
 		 return 2;
 	 }
+	if(button_pressed(Right))
+	{
+		return 3;
+	}
 
 	return 0;
 }

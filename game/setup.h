@@ -7,6 +7,8 @@
 
 #define MIN_TREASURE 5
 
+typedef enum {EASY, HARD} difficulty;
+
 void setup_set_orientation(orientation o);
 
 void draw_tutorial_map();
@@ -22,3 +24,5 @@ void add_treasure();
 void add_exit();
 
 void random_move_player();
+
+void set_difficulty(difficulty d);

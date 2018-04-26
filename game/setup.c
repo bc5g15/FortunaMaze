@@ -5,6 +5,8 @@ int mazeNum = 0;
 int exit_x = 0;
 int exit_y = 0;
 
+difficulty currentDifficulty = EASY;
+
 void setup_set_orientation(orientation o)
 {
     set_orientation(o);
@@ -61,14 +63,18 @@ void draw_maze(int i)
 
 void setup_maze()
 {
-    if(mazeNum %5 != 0)
+    if(mazeNum %5 != 0 && currentDifficulty==HARD)
     {
         makeMaze_binaryTree((mazeNum++)%4);
     }
-    else
+    else if(currentDifficulty==HARD)
     {
         makeMaze_rBackTrack();
         mazeNum++;
+    }
+    else
+    {
+        makeMaze_binaryTree((mazeNum++)%4);
     }
 }
 
@@ -78,8 +84,8 @@ void add_treasure()
     int add = rand() %5;
     for(t=0; t<MIN_TREASURE+add; t++)
     {
-        int x = (rand() % (SCRN_MAX_HEIGHT - 2)) + 1;
-        int y = (rand() % (SCRN_MAX_WIDTH - 2)) + 1;
+        int x = (rand() % (SCRN_MAX_HEIGHT - 3)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 3)) + 1;
 
         addTreasure(x, y);
     }
@@ -87,8 +93,8 @@ void add_treasure()
     if(rand()%2)
     {
         //Add big treasure
-        int x = (rand() % (SCRN_MAX_HEIGHT - 2)) + 1;
-        int y = (rand() % (SCRN_MAX_WIDTH - 2)) + 1;
+        int x = (rand() % (SCRN_MAX_HEIGHT - 3)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 3)) + 1;
 
         addBigTreasure(x, y);
     }
@@ -122,4 +128,9 @@ void random_move_player()
 
     // set_player_pos(x, y);
     redraw();
+}
+
+void set_difficulty(difficulty d)
+{
+    currentDifficulty = d;
 }

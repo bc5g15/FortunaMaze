@@ -1,5 +1,7 @@
 #include "mazehelp.h"
 
+void drawWall(uint8_t, uint8_t);
+
 void fill()
 {
     int i, j;
