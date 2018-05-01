@@ -29,6 +29,7 @@ void draw_start_screen();
 void draw_game_over();
 
 int check_pause();
+int get_any_key();
 
 // FIL File;                   /* FAT File */
 
@@ -97,6 +98,7 @@ Add pause button *
 Ensure exits can't go in the same place twice *
 Add delay on exit screen *
 Make exit more visible *
+Make Game Over screen loop back to main input
 */
 int game_loop(int state)
 {
@@ -180,9 +182,16 @@ int game_loop(int state)
 		//Game Over screen
 			draw_game_over();
 			//Delay, to avoid skipping past
-			_delay_ms(200);
+			_delay_ms(1000);
 			timer_reset = 1;
-			return 3;
+			return 8;
+		case 8 :
+			k = get_any_key();
+			if(k)
+			{
+				return 2;
+			}
+			return 8;
 
 	}
 
@@ -269,7 +278,7 @@ void draw_game_over()
 	{
 		display_char('*');
 	}
-	display_string_xy("*   GAME   OVER    *", 6, 40);
+	display_string_xy("*   GAME   OVER     *", 6, 40);
 	display_char_xy('*', 6, 48);
 	for(i=1; i<21; i++)
 	{
@@ -295,6 +304,17 @@ void draw_game_over()
 		display_char('*');
 	}
 
+}
+
+int get_any_key()
+{
+	if(button_pressed(Up) || button_pressed(Down) ||
+	 button_pressed(Left) || button_pressed(Right) ||
+	 button_pressed(Center))
+	 {
+		 return 1;
+	 }
+	 return 0;
 }
 
 int swap_or_start()

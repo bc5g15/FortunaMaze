@@ -80,8 +80,8 @@ Check this method, it might be a bit suspect
 */
 int check_tile(uint8_t x, uint8_t y)
 {
-    if(x<INIT_X || y<INIT_Y || x>=(SCRN_MAX_WIDTH-INIT_X)
-    || y>= ((SCRN_MAX_HEIGHT-INIT_X)) || getScreenChar(x, y)=='.')
+    if(x<INIT_X || y<INIT_Y || x>(SCRN_MAX_WIDTH-INIT_X)
+    || y> ((SCRN_MAX_HEIGHT-INIT_X)) || getScreenChar(x, y)=='.')
     {
         return 0;
     }
