@@ -14,8 +14,8 @@ mydir reverse(mydir d);
 void makeMaze_rBackTrack()
 {
     fill();
-    // uint8_t x = ((rand() *2) % (SCRN_MAX_WIDTH-INIT_X)) + INIT_X;
-    // uint8_t y = ((rand() *2) % (SCRN_MAX_HEIGHT-INIT_Y)) + INIT_Y;
+    // uint8_t x = (((rand() *2)+INIT_X) % (SCRN_MAX_WIDTH));
+    // uint8_t y = (((rand() *2)+INIT_Y) % (SCRN_MAX_HEIGHT));
     uint8_t x = 9;
     uint8_t y = 9;
     carve_passages_from(x, y);
