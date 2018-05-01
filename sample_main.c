@@ -48,6 +48,8 @@ int active = 0;
 
 int lhand = 0;
 
+int i = 0;
+
 
 int recurse(int state)
 {
@@ -342,6 +344,11 @@ int swap_or_start()
 	if(button_pressed(Right))
 	{
 		return 3;
+	}
+
+	if(button_pressed(Down))
+	{
+		draw_maze(i++);
 	}
 
 	return 0;

@@ -56,8 +56,9 @@ void setup_tutorial_player()
 
 void draw_maze(int i)
 {
-    makeMaze_binaryTree((i)%4);
-    //makeMaze_rBackTrack();
+    // makeMaze_binaryTree((i)%4);
+    srand(i);
+    makeMaze_rBackTrack();
     mazeNum = 0;
 }
 

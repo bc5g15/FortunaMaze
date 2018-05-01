@@ -16,8 +16,8 @@ void makeMaze_rBackTrack()
     fill();
     // uint8_t x = ((rand() *2) % (SCRN_MAX_WIDTH-INIT_X)) + INIT_X;
     // uint8_t y = ((rand() *2) % (SCRN_MAX_HEIGHT-INIT_Y)) + INIT_Y;
-    uint8_t x = 1;
-    uint8_t y = 1;
+    uint8_t x = 9;
+    uint8_t y = 9;
     carve_passages_from(x, y);
 }
 
@@ -45,7 +45,7 @@ void carve_passages_from(uint8_t x, uint8_t y)
             case RIGHT :
              newx+=DIV_X;
              break;
-            default :
+            default:
              break;
        }
        if(check_tile(newx, newy))
@@ -54,7 +54,6 @@ void carve_passages_from(uint8_t x, uint8_t y)
            draw_tile(x, y, custom[i]);
            carve_passages_from(newx, newy);
        }
-       //_delay_ms(20);
    } 
 }
 
@@ -80,8 +79,8 @@ Check this method, it might be a bit suspect
 */
 int check_tile(uint8_t x, uint8_t y)
 {
-    if(x<INIT_X || y<INIT_Y || x>(SCRN_MAX_WIDTH-INIT_X)
-    || y> ((SCRN_MAX_HEIGHT-INIT_X)) || getScreenChar(x, y)=='.')
+    if(x<INIT_X || y<INIT_Y || x>=(SCRN_MAX_WIDTH-INIT_X)
+    || y>=((SCRN_MAX_HEIGHT-INIT_X)) || getScreenChar(x, y)=='.')
     {
         return 0;
     }
@@ -103,6 +102,10 @@ void get_random_dirs(mydir *dirs)
         {
             dirs[i]=basic[x];
             basic[x] = NONE;
+        }
+        else 
+        {
+            i--;
         }
     }
 }
