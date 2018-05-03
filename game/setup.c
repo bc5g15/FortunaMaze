@@ -85,8 +85,8 @@ void add_treasure()
     int add = rand() %5;
     for(t=0; t<MIN_TREASURE+add; t++)
     {
-        int x = (rand() % (SCRN_MAX_HEIGHT - 3)) + 1;
-        int y = (rand() % (SCRN_MAX_WIDTH - 3)) + 1;
+        int x = (rand() % (SCRN_MAX_HEIGHT - 4)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 4)) + 1;
 
         addTreasure(x, y);
     }
@@ -94,8 +94,8 @@ void add_treasure()
     if(rand()%2)
     {
         //Add big treasure
-        int x = (rand() % (SCRN_MAX_HEIGHT - 3)) + 1;
-        int y = (rand() % (SCRN_MAX_WIDTH - 3)) + 1;
+        int x = (rand() % (SCRN_MAX_HEIGHT - 4)) + 1;
+        int y = (rand() % (SCRN_MAX_WIDTH - 4)) + 1;
 
         addBigTreasure(x, y);
     }
@@ -103,8 +103,8 @@ void add_treasure()
 
 void add_exit()
 {
-    int x = (rand() % (SCRN_MAX_HEIGHT-4)) + 1;
-    int y = (rand() % (SCRN_MAX_WIDTH-4)) + 1;
+    int x = (rand() % (SCRN_MAX_HEIGHT-6)) + 2;
+    int y = (rand() % (SCRN_MAX_WIDTH-6)) + 2;
 
     if(exit_x==x && exit_y==y)
     {
