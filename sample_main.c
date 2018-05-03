@@ -101,6 +101,7 @@ Ensure exits can't go in the same place twice *
 Add delay on exit screen *
 Make exit more visible *
 Make Game Over screen loop back to main input
+Improve random generation recursive backtracking mazes
 */
 int game_loop(int state)
 {

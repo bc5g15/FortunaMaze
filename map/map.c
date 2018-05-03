@@ -162,6 +162,11 @@ void drawColourTile(char t, uint8_t x, uint8_t y)
             drawWithColour(t, x, y,
              EXIT_FORE, EXIT_BACK);
              break;
+        case M_FLOOR :
+            //Create the appearance that the dots have been eaten
+            drawWithColour(t, x, y,
+             BLACK, BLACK);
+            break;
         default :
             setScreenChar(t, x, y);
             break;

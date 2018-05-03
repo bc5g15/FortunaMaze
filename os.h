@@ -10,7 +10,6 @@
     - Peter Dannegger’s Code for the Rotary Encoder
     - Peter Dannegger’s Code for Switch debouncing
     - Steve Gunn’s display driver
-    - ChanN’s FAT File System
 
   Occupies Timer T0 for scheduling and LED brightness.
 
