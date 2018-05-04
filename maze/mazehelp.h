@@ -1,3 +1,9 @@
+/***
+ * 
+ * This header file defines some helpful methods for all maze generation algorithms
+ * 
+ */
+
 #ifndef MAZE_HELPER
 #define MAZE_HELPER
 
@@ -10,9 +16,15 @@
 #define INIT_X 1
 #define INIT_Y 1
 
+/**
+ * Black out the entire screen with wall characters
+ */
 void fill();
 
-void drawFloor(uint8_t x, uint8_t y);
 
+/**
+ * draw a character that is recognised as a floor
+ */
+void drawFloor(uint8_t x, uint8_t y);
 
 #endif
