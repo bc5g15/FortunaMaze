@@ -122,7 +122,7 @@ void add_exit()
     addExit(x, y);
 }
 
-void random_move_player()
+void replace_player()
 {
     // int x = ((rand() % (SCRN_MAX_HEIGHT/2)) * 2) + INIT_X;
     // int y = ((rand() % (SCRN_MAX_WIDTH/2)) * 2) + INIT_Y;

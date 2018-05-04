@@ -430,7 +430,7 @@ void input_handler()
 		setup_maze();
 		add_treasure();
 
-		random_move_player();
+		replace_player();
 		add_exit();
 	}
 }

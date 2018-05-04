@@ -1,3 +1,10 @@
+/***
+ * 
+ * Adds the capacity for player movement and
+ * data to the system.
+ * 
+ */
+
 #include "map.h"
 
 /*
@@ -8,7 +15,6 @@ struct
 
 typedef struct {
  MOB m;
- //uint8_t health;
  uint32_t gold;
 } PLAYER;
 

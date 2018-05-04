@@ -1,3 +1,11 @@
+/***
+ * 
+ * This header provides some helpful methods.
+ * Designed to allow the game to be easily setup from within a main loop
+ * 
+ */
+
+
 //#include "map.h"
 #include "player.h"
 #include "bintree.h"
@@ -23,6 +31,6 @@ void add_treasure();
 
 void add_exit();
 
-void random_move_player();
+void replace_player();
 
 void set_difficulty(difficulty d);
