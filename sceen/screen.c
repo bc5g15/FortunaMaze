@@ -47,14 +47,14 @@ void setScreenChar(char c, uint8_t x, uint8_t y)
     display_char_xy(c, (x*FONTWIDTH), ((y+SCRN_SHIFT)*FONTHEIGHT));
 }
 
-void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)
-{
-    char c1 = getScreenChar(x1, y1);
-    char c2 = getScreenChar(x2, y2);
+// void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)
+// {
+//     char c1 = getScreenChar(x1, y1);
+//     char c2 = getScreenChar(x2, y2);
 
-    setScreenChar(c1, x2, y2);
-    setScreenChar(c2, x1, y1);
-}
+//     setScreenChar(c1, x2, y2);
+//     setScreenChar(c2, x1, y1);
+// }
 
 void displayBlock(ScreenBlock *sc,
  uint8_t x, uint8_t y)

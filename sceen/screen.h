@@ -1,3 +1,9 @@
+/**
+ * 
+ * The Screen files provide an may of interaction with the screen as an array of characters
+ * 
+ */
+
 #ifndef SCREEN_DEF
 #define SCREEN_DEF 1
 
@@ -19,21 +25,25 @@ typedef struct{
 } ScreenBlock;
 
 /*
-By default
-Unless maybe I should use a vertical view?
+With a vertical view
 Max width = 40
 Max Height = 40
 */
 
+/**
+ * Gets the currently logged character at the given position
+ */
 char getScreenChar(uint8_t x, uint8_t y);
 
-/*
-Relies on a custom method in the lcd
-display library
+/**
+*Sets the character at a given screen position
 */
 void setScreenChar(char c, uint8_t x, uint8_t y);
 
-void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
+/**
+ * Checking that this method is unnecessary
+ */
+// void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 
 void displayBlock(ScreenBlock *sc, uint8_t x, uint8_t y);
 
