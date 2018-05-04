@@ -45,17 +45,26 @@ void setScreenChar(char c, uint8_t x, uint8_t y);
  */
 // void swapTile(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 
+/**
+ * Display a static block of text at a position.
+ * This method is used to draw the Game Start screen
+ * and Game Over screen
+ */
 void displayBlock(ScreenBlock *sc, uint8_t x, uint8_t y);
 
+/**
+ * Set a character at a specified position with a 
+ * speciied foreground and background
+ */
 void drawWithColour(char c, uint8_t x, uint8_t y,
     uint16_t foreground, uint16_t background);
 
+
+/**
+ * Helper methods to display a character string
+ * at the top or bottom of the screen.
+ */
 void display_top(char *str);
 void display_bottom(char *str);
 
-//Block commands
-
-// void setBlockRow(char* row, ScreenBlock* b, int pos);
-
-void full_refresh();
 #endif
