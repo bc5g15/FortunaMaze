@@ -34,5 +34,8 @@ Download this repo to an accessable folder. Connect your LaFortuna board to your
 * Recursive backtracking algorithm occasionally locks.
 * Sometimes treasure is placed in inaccessible locations
 
-## Start Screen
-![alt text](https://raw.githubusercontent.com/bc5g15/FortunaMaze/master/FortunaMaze_GameStart.JPG "Game Start Screen")
+## Possible Extensions
+* More maze generation algorithms could be added: E.G. Sidewinder, Growing Tree algorithm
+* Vary the colour of the maze walls as the maze gets deeper
+* Improve the system for generating the exit, ensure it is always a certain distance from the player
+
