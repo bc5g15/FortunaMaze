@@ -32,7 +32,8 @@ Download this repo to an accessable folder. Connect your LaFortuna board to your
 
 ## Known issues
 * Recursive backtracking algorithm occasionally locks.
-* Sometimes treasure is placed in inaccessible locations
+* Sometimes treasure is placed in inaccessible locations.
+* Hard mode breaks at level 11, Probably due to RBT bug.
 
 ## Possible Extensions
 * More maze generation algorithms could be added: E.G. Sidewinder, Growing Tree algorithm
