@@ -1,5 +1,12 @@
 /* COMP2215 Task 5---SKELETON */
 
+/***
+ * The entry point of the program. The main game loop that controls
+ * the timer and game tasks.
+ * 
+ * Project can be found at: https://github.com/bc5g15/FortunaMaze
+ */
+
 #include "os.h"
 #include <avr/pgmspace.h>
 #include "myStrings.h"
