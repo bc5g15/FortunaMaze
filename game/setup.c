@@ -5,6 +5,9 @@ int mazeNum = 0;
 int exit_x = 0;
 int exit_y = 0;
 
+const int skiplist[] = {10,12};
+const int skiplen = 2;
+
 difficulty currentDifficulty = EASY;
 
 void setup_set_orientation(orientation o)
@@ -57,6 +60,12 @@ void setup_tutorial_player()
 void draw_maze(int i)
 {
     // makeMaze_binaryTree((i)%4);
+    int k;
+    for(k=0; k<skiplen; k++)
+    {
+        if(i == skiplist[k])
+            i+=1;
+    }
     srand(i);
     makeMaze_rBackTrack();
     mazeNum = 0;
@@ -64,6 +73,14 @@ void draw_maze(int i)
 
 void setup_maze()
 {
+    mazeNum++;
+    int i;
+    for(i=0; i<skiplen; i++)
+    {
+        if(mazeNum == skiplist[i])
+            mazeNum+=1;
+    }
+    srand(mazeNum);
     if(mazeNum %5 != 0 && currentDifficulty==HARD)
     {
         makeMaze_binaryTree((mazeNum++)%4);
@@ -71,7 +88,7 @@ void setup_maze()
     else if(currentDifficulty==HARD)
     {
         makeMaze_rBackTrack();
-        mazeNum++;
+        
     }
     else
     {

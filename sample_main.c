@@ -349,7 +349,11 @@ int swap_or_start()
 
 	if(button_pressed(Down))
 	{
-		draw_maze(i++);
+		char strout[20];
+		snprintf(strout, sizeof(strout), "Seed: %i", i++);
+		display_top(strout);
+		draw_maze(i);
+		
 	}
 
 	return 0;
